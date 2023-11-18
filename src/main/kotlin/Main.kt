@@ -1,3 +1,12 @@
+fun printMatrix(array: Array<Array<Int>>, n: Int, m: Int) {
+    for (i in 0 until n) {
+        for (j in 0 until m) {
+            print("${array[i][j]} ")
+        }
+        println()
+    }
+}
+
 fun main(args: Array<String>) {
     println("Hello World!")
 
