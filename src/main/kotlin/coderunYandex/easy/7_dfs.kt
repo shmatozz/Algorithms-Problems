@@ -1,4 +1,4 @@
-package easy
+package coderunYandex.easy
 
 fun printGraph(graph: MutableMap<Int, MutableSet<Int>>) {
     for (v in graph.keys) {

@@ -1,4 +1,4 @@
-package easy
+package coderunYandex.easy
 
 fun dfs(graph: Array<MutableSet<Int>>, start: Int, inComponent: IntArray) {
     val stack = mutableListOf(start)

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/YandexCodeRun.iml" filepath="$PROJECT_DIR$/YandexCodeRun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithms-Problems.iml" filepath="$PROJECT_DIR$/Algorithms-Problems.iml" />
     </modules>
   </component>
 </project>

@@ -1,6 +1,4 @@
-package easy
-
-import printMatrix
+package coderunYandex.easy
 
 fun main() {
     val m = readln().toInt()

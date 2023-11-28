@@ -1,10 +1,9 @@
-package easy
+package coderunYandex.easy
 
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
-import kotlin.math.min
 
 // dynamic programming 2D
 fun main(args: Array<String>) {

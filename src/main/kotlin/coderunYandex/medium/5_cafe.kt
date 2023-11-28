@@ -1,4 +1,4 @@
-package medium
+package coderunYandex.medium
 
 fun main(args: Array<String>) {
     val n = readln().toInt()
