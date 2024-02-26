@@ -1,4 +1,4 @@
-package tinkoffAaDS2024
+package tinkoffAlgorithms2024.enrollTest
 
 import kotlin.math.sqrt
 
