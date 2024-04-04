@@ -1,27 +1,42 @@
 package tinkoffAlgorithms2024.w7_dp
 
+import kotlin.math.min
+
 fun main() {
     val (n, k) = readln().split(' ').map { it.toInt() }
     val coins = ("0 " + readln() + " 0").split(' ').map { it.toInt() }.toIntArray()
+    val deque: ArrayDeque<Int> = ArrayDeque()
 
     val dp = IntArray(n) { 0 }
     val path = IntArray(n) { 0 }
-
-    for (i in 1 until n) {
-        var prevMax = i - 1
-        val start = if (i - k < 0) {
-            0
-        } else {
-            i - k
+    deque.add(0)
+    for (i in 1 .. min(k, n - 1)) {
+        dp[i] = dp[deque.first()] + coins[i]
+        path[i] = deque.first()
+        while (deque.isNotEmpty() && dp[deque.last()] <= dp[i]) {
+            deque.removeLast()
         }
-        for (j in start until i) {
-            if (dp[j] > dp[prevMax]) {
-                prevMax = j
-            }
-        }
-        dp[i] = dp[prevMax] + coins[i]
-        path[i] = prevMax
+        deque.add(i)
     }
+
+    for (i in k + 1 until n) {
+        if (i - k > deque.first()) {
+            deque.removeFirst()
+        }
+
+        dp[i] = dp[deque.first()] + coins[i]
+        path[i] = deque.first()
+
+        while (deque.isNotEmpty() && dp[deque.last()] <= dp[i]) {
+            deque.removeLast()
+        }
+        deque.add(i)
+    }
+
+//    for (i in dp) print("$i ")
+//    println()
+//    for (i in path) print("$i ")
+//    println()
 
     val ans = mutableListOf(n)
     while (ans.last() - 1 != 0) {
