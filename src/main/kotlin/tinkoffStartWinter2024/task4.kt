@@ -17,7 +17,7 @@ fun main() {
         graph.add(Vertex(a.toInt(), c, mutableListOf()))
 
         if (p != "0") {
-            graph[p.toInt() - 1].children.add(graph.last)
+            graph[p.toInt() - 1].children.add(graph.last())
         }
     }
 

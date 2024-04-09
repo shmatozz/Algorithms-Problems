@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
 
     val count = callsQueue.size
     while (callsQueue.isNotEmpty()) {
-        println(callsQueue.last)
+        println(callsQueue.last())
         callsQueue.removeLast()
     }
 
