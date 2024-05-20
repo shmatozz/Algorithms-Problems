@@ -2,30 +2,36 @@ package tinkoffAlgorithms2024.w11_solution_methods2
 
 import kotlin.math.max
 
-fun calcDP(dp: Array<IntArray>, s: String, left: Int, right: Int) : Int {
-    if (left == right) {
-        return 1
-    } else if (left > right) {
-        return 0
+fun calcDP(dp: Array<IntArray>, s: String) {
+    val n = s.length
+    for (length in 2..n) {
+        for (i in 0..n-length) {
+            val j = i + length - 1
+            if (s[i] == s[j]) {
+                dp[i][j] = if (length == 2) 2 else dp[i+1][j-1] + 2
+            } else {
+                dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+            }
+        }
     }
-
-    if (s[left] != s[right]) {
-        dp[left][right] = max(
-            calcDP(dp, s, left + 1,  right),
-            calcDP(dp, s, left,  right - 1)
-        )
-    } else {
-        dp[left][right] = calcDP(dp, s, left + 1, right - 1) + 2
-    }
-
-    return dp[left][right]
 }
 
 fun main() {
     val s = readln()
-    val dp = Array(s.length) { IntArray(s.length) { -1 } }
+    val dp = Array(s.length) { IntArray(s.length) { 0 } }
 
-    calcDP(dp, s, 0, s.length - 1)
+    for (i in s.indices) {
+        dp[i][i] = 1
+    }
+
+    calcDP(dp, s)
+
+//    for (i in dp.indices) {
+//        for (j in dp.indices) {
+//            print("${dp[i][j]} ")
+//        }
+//        println()
+//    }
 
     var left = 0
     var right = s.length - 1
@@ -34,15 +40,13 @@ fun main() {
     val palindrome = CharArray(dp[0][s.length - 1])
 
     while (left <= right) {
-        if (left == right && dp[left][right] == 1) {
-            palindrome[pLeft] = s[left]
-            pLeft++
-            left++
-        } else if (s[left] == s[right]) {
+        if (s[left] == s[right]) {
             palindrome[pLeft] = s[left]
             palindrome[pRight] = s[right]
-            pLeft++; left++
-            pRight--; right--
+            pLeft++
+            pRight--
+            left++
+            right--
         } else if (dp[left + 1][right] > dp[left][right - 1]) {
             left++
         } else {
